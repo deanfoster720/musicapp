@@ -3,14 +3,14 @@ import 'package:client/features/auth/view/widgets/auth_gradient_button.dart';
 import 'package:client/features/auth/view/widgets/custom_field.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   // Layout tuning in one place
   static const double _pad = 15.0;
   static const double _gapTitle = 30.0;
@@ -25,7 +25,6 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -48,16 +47,11 @@ class _SignupPageState extends State<SignupPage> {
             children: [
               // Title
               const Text(
-                'Sign Up.',
+                'Sign In.',
                 style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: _gapTitle),
-
-              // Fields
-              CustomField(hintText: 'Name', controller: nameController),
-
-              const SizedBox(height: _gapField),
 
               CustomField(hintText: 'Email', controller: emailController),
 
@@ -72,18 +66,18 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(height: _gapBeforeCta),
 
               // Submit button (behavior lives inside this widget)
-              AuthGradientButton(buttonText: 'Sign up', onTap: () {}),
+              AuthGradientButton(buttonText: 'Sign in', onTap: () {}),
 
               const SizedBox(height: _gapAfterCta),
 
               // Sign-in prompt
               RichText(
                 text: TextSpan(
-                  text: 'Already have an account? ',
+                  text: 'Don\'t have an account? ',
                   style: Theme.of(context).textTheme.titleMedium,
                   children: const [
                     TextSpan(
-                      text: 'Sign In.',
+                      text: 'Sign Up.',
                       style: TextStyle(
                         color: Pallete.gradient2,
                         fontWeight: FontWeight.bold,

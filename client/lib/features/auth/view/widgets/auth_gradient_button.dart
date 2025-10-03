@@ -2,7 +2,13 @@ import 'package:client/core/theme/app_pallete.dart';
 import 'package:flutter/material.dart';
 
 class AuthGradientButton extends StatelessWidget {
-  const AuthGradientButton({super.key});
+  final String buttonText;
+  final VoidCallback onTap;
+  const AuthGradientButton({
+    super.key,
+    required this.buttonText,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class AuthGradientButton extends StatelessWidget {
       ),
 
       child: ElevatedButton(
-        onPressed: () {}, // intentionally empty to preserve behavior
+        onPressed: onTap, // intentionally empty to preserve behavior
         // Transparent styles so the gradient container shows through
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(395, 55),
@@ -26,9 +32,9 @@ class AuthGradientButton extends StatelessWidget {
           shadowColor: Pallete.transparentColor,
         ),
 
-        child: const Text(
-          'Sign Up.',
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+        child: Text(
+          buttonText,
+          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
         ),
       ),
     );

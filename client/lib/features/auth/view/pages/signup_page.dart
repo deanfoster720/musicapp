@@ -18,6 +18,20 @@ class _SignupPageState extends State<SignupPage> {
   static const double _gapBeforeCta = 20.0;
   static const double _gapAfterCta = 20.0;
 
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+    formKey.currentState!.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,52 +41,59 @@ class _SignupPageState extends State<SignupPage> {
         padding: const EdgeInsets.all(_pad),
 
         // Vertically centered stack: title → fields → button → footer
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Title
-            const Text(
-              'Sign Up.',
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: _gapTitle),
-
-            // Fields
-            CustomField(hintText: 'Name'),
-
-            const SizedBox(height: _gapField),
-
-            CustomField(hintText: 'Email'),
-
-            const SizedBox(height: _gapField),
-
-            CustomField(hintText: 'Password'),
-
-            const SizedBox(height: _gapBeforeCta),
-
-            // Submit button (behavior lives inside this widget)
-            AuthGradientButton(),
-
-            const SizedBox(height: _gapAfterCta),
-
-            // Sign-in prompt
-            RichText(
-              text: TextSpan(
-                text: 'Already have an account? ',
-                style: Theme.of(context).textTheme.titleMedium,
-                children: [
-                  TextSpan(
-                    text: 'Sign In',
-                    style: TextStyle(
-                      color: Pallete.gradient2,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+        child: Form(
+          child: Column(
+            key: formKey,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Title
+              const Text(
+                'Sign Up.',
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
               ),
-            ),
-          ],
+
+              const SizedBox(height: _gapTitle),
+
+              // Fields
+              CustomField(hintText: 'Name', controller: nameController),
+
+              const SizedBox(height: _gapField),
+
+              CustomField(hintText: 'Email', controller: emailController),
+
+              const SizedBox(height: _gapField),
+
+              CustomField(
+                hintText: 'Password',
+                controller: passwordController,
+                isObscureText: true,
+              ),
+
+              const SizedBox(height: _gapBeforeCta),
+
+              // Submit button (behavior lives inside this widget)
+              AuthGradientButton(),
+
+              const SizedBox(height: _gapAfterCta),
+
+              // Sign-in prompt
+              RichText(
+                text: TextSpan(
+                  text: 'Already have an account? ',
+                  style: Theme.of(context).textTheme.titleMedium,
+                  children: [
+                    TextSpan(
+                      text: 'Sign In',
+                      style: TextStyle(
+                        color: Pallete.gradient2,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

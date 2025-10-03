@@ -19,25 +19,17 @@ class _SignupPageState extends State<SignupPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Sign Up',
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
+            const Text(
+              'Sign Up',
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
-            ),
-            const SizedBox(height: 30,),
-            CustomField(
-              hintText: 'Name',
-            ),
-            const SizedBox(height: 15,),
-            CustomField(
-              hintText: 'Email',
-            ),
-            const SizedBox(height: 15,),
-            CustomField(
-              hintText: 'Password',
-            ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 30),
+            CustomField(hintText: 'Name'),
+            const SizedBox(height: 15),
+            CustomField(hintText: 'Email'),
+            const SizedBox(height: 15),
+            CustomField(hintText: 'Password'),
+            const SizedBox(height: 20),
             AuthGradientButton(),
           ],
         ),

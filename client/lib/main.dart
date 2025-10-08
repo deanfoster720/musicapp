@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'musicapp',
       theme: AppTheme.darkThemeMode, // use our dark theme config
-      home: const LoginPage(), // first screen shown on launch
+      home: const SignupPage(), // first screen shown on launch
     );
   }
 }
